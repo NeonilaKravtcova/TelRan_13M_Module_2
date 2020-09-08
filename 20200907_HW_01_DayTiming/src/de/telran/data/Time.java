@@ -27,6 +27,6 @@ public class Time {
 
     @Override
     public String toString() {
-        return "Сейчас " + minutes + " минут " + (hours + 1) + "-го";
+        return "Сейчас " + minutes + " минут " + (hours + 1) + "-го ";
     }
 }
