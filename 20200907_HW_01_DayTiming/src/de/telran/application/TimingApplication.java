@@ -20,7 +20,7 @@ public class TimingApplication {
         time.setMinutes(new Scanner(System.in).nextInt());
 
         if (time.getMinutes() == 0){
-            System.out.println("Сейчас ровно " + time.getHours() + " часов");
+            System.out.println("Сейчас ровно " + time.getHours() + " часов ");
         } else if (time.getMinutes() > 0 && time.getMinutes() < 30) {
             System.out.println(time);
         } else if (time.getMinutes() == 30) {
