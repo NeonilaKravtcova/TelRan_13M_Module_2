@@ -83,7 +83,7 @@ public class Film {
         System.out.println("--------------------");
         System.out.println("Film: " + title + " (" + genre + ")");
         System.out.println("--------------------");
-        System.out.println("Is on in the following cinemas: ");
+        System.out.println("is on in the following cinemas: ");
         outPrint();
     }
 

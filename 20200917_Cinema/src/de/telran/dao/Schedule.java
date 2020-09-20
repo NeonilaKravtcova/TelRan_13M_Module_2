@@ -55,33 +55,31 @@ public class Schedule {
         System.out.println(flag ? " " : "no information");//или if (!flag) {System.out.println("no information")}
     }
 
-    public void displayFilmsByDate(Film[] films, LocalDate date) {
+    public void displayFilmsByDate(LocalDate date) {
         System.out.println("--------------------");
-        System.out.println(date + " are on: ");
+        System.out.println(date);
         boolean flag = false;
-        for (int i = 0; i < films.length; i++) {
-            if (films[i].getDate().compareTo(date) == 0) {
+        for (int i = 0; i < size; i++) {
+            if (films[i].getDate().equals(date)) { //films[i].getDate().compareTo(date) == 0
                 films[i].myToString();
                 flag = true;
             }
         }
-        if (!flag) {
-            System.out.println("Movies are not found \n");
-        }
+        System.out.println(flag ? " " : "No movies found on this date");
     }
 
-    public void displayFilmsByGenre(Film[] films, Genre genre){
+    public void displayFilmsByGenre(Genre genre){
         System.out.println("--------------------");
-        System.out.println("Movies in genre " + genre + ": ");
         boolean flag = false;
-        for (int i = 0; i < films.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (films[i].getGenre().equals(genre)) {
+                System.out.println("Movies in genre " + genre + ": ");
                 films[i].myToString();
                 flag = true;
             }
         }
         if (!flag) {
-            System.out.println("Movies in this genre are not found \n");
+            System.out.println("Movies in genre " + genre + " are not found \n");
         }
     }
 }

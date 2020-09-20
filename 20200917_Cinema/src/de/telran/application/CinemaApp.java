@@ -24,9 +24,10 @@ public class CinemaApp {
         Cinema[] cinemas = {cinema1, cinema2, cinema3, cinema4, cinema5};
         Cinema[] cinemas1 = {cinema3, cinema4};
         Cinema[] cinemas2 = {cinema2, cinema5};
+        Cinema[] cinemas3 = {cinema1};
 
         Film film1 = new Film("Harry Potter", LocalDate.of(2020, 9, 18), Genre.ADVENTURE, cinemas);
-        Film film2 = new Film("Titanic", LocalDate.of(2020, 9, 20), Genre.DRAMA, cinemas);
+        Film film2 = new Film("Titanic", LocalDate.of(2020, 9, 20), Genre.DRAMA, cinemas1);
         Film film3 = new Film("Hail Ceaser", LocalDate.of(2020, 9, 18), Genre.COMEDY, cinemas1);
         Film film4 = new Film("Forsage", LocalDate.of(2020, 9, 21), Genre.ADVENTURE, cinemas1);
         Film film5 = new Film("Bad Boys for Life", LocalDate.of(2020, 9, 21), Genre.DRAMA, cinemas2);
@@ -38,16 +39,17 @@ public class CinemaApp {
         schedule.addFilm(film2);
         schedule.addFilm(film3);
         schedule.addFilm(film4);
+        schedule.addFilm(film5);
         //schedule.outPrint();
         //schedule.outPrintCinemaFilms("Star");
 
-        schedule.displayFilmsByDate(films, LocalDate.of(2020, 9, 20));
-        schedule.displayFilmsByDate(films, LocalDate.of(2020, 9, 18));
-        schedule.displayFilmsByDate(films, LocalDate.of(2020, 9, 17));
+        schedule.displayFilmsByDate(LocalDate.of(2020, 9, 20));
+        schedule.displayFilmsByDate(LocalDate.of(2020, 9, 18));
+        schedule.displayFilmsByDate(LocalDate.of(2020, 9, 17));
 
-        schedule.displayFilmsByGenre(films, Genre.ADVENTURE);
-        schedule.displayFilmsByGenre(films, Genre.DRAMA);
-        schedule.displayFilmsByGenre(films, Genre.THRILLER);
+        schedule.displayFilmsByGenre(Genre.ADVENTURE);
+        schedule.displayFilmsByGenre(Genre.DRAMA);
+        schedule.displayFilmsByGenre(Genre.THRILLER);
     }
 
 }
