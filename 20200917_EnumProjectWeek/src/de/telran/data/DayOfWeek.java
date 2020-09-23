@@ -1,6 +1,6 @@
 package de.telran.data;
 
-public enum WeekDays {
+public enum DayOfWeek {
     MONDAY("MO", "Spaghetti"),
     TUESDAY("TU", "Pizza"),
     WEDNESDAY("WE", "Chicken"),
@@ -12,7 +12,7 @@ public enum WeekDays {
     private String title;
     private String course;
 
-    WeekDays(String title, String course) {
+    DayOfWeek(String title, String course) {
         this.title = title;
         this.course = course;
     }
@@ -24,6 +24,4 @@ public enum WeekDays {
     public String getCourse() {
         return course;
     }
-
-
 }

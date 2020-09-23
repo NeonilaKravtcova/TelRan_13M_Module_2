@@ -1,20 +1,23 @@
 package de.telran.data;
 
 public class Schedule {
-    private WeekDays[] days;
+    private DayOfWeek[] days;
 
-    public Schedule(WeekDays[] days) {
+    public Schedule(DayOfWeek[] days) {
         this.days = days;
     }
 
-    public void wakeUpWeek() {
-        for (WeekDays day : days) {
-            if (day == WeekDays.SATURDAY || day == WeekDays.SUNDAY) {
+    public void wakeUp(DayOfWeek day) {
+            if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY /*|| day.ordinal() >= 5*/) {
                 System.out.println(day.getTitle() + " - you can sleep longer..");
             } else {
                 System.out.println(day.getTitle() + " - wake up!");
             }
-        }
+        System.out.println();
+    }
+
+    public void displayTodayMenu(DayOfWeek day) {
+            System.out.println(day.getTitle() + " - " + day.getCourse());
         System.out.println();
     }
 
