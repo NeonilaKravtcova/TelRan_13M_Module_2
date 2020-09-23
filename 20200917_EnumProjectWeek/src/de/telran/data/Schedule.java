@@ -9,7 +9,7 @@ public class Schedule {
 
     public void wakeUp(DayOfWeek day) {
             if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY /*|| day.ordinal() >= 5*/) {
-                System.out.println(day.getTitle() + " - you can sleep longer..");
+                System.out.println(day.getTitle() + " - you can sleep longer...");
             } else {
                 System.out.println(day.getTitle() + " - wake up!");
             }

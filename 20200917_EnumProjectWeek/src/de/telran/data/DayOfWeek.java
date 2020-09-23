@@ -7,7 +7,7 @@ public enum DayOfWeek {
     THURSDAY("TH", "Fish&Cheaps"),
     FRIDAY("FR", "Burger"),
     SATURDAY("SA", "Olivie"),
-    SUNDAY("SU", "Soup");
+    SUNDAY("SU", "Lasagna");
 
     private String title;
     private String course;
