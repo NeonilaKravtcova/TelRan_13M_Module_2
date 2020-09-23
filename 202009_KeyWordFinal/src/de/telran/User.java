@@ -2,49 +2,45 @@ package de.telran;
 
 public class User {
     private String userName;
-    private static int userId = 0;
+    private int userId;
+    private static int userQty = 0;
 
     public User(String userName){
         this.userName = userName;
-    }
-
-    public String getUserName(){
-        return userName;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userName){
-        userId++;
+        userId = ++userQty;
     }
 
     @Override
     public String toString() {
-        return userId + ". " + userName;
-    }
-
-    private static String addUser(String userName){
-        User user = new User(userName);
-        user.setUserId(user.getUserName());
-        return user.getUserId() + ". " + user.getUserName();
+        if (userQty < 10){
+            return "00" + userId + ". " + userName;
+        } else if (userQty < 99) {
+            return "0" + userId + ". " + userName;
+        } else {
+            return userId + ". " + userName;
+        }
     }
 
     public static void main(String[] args) {
-        //1 - можно так
+
         User user1 = new User("Vasya");
-        user1.setUserId(user1.getUserName());
-        System.out.println(user1.toString());
-
-        //2 - можно так
         User user2 = new User ("Petya");
-        user2.setUserId(user2.getUserName());
-        System.out.println(user2.getUserId() + ". " + user2.getUserName());
+        User user3 = new User ("Kolya");
+        User user4 = new User ("Olya");
+        User user5 = new User ("Masha");
 
-        //3 - и вот так
-        System.out.println(addUser("Kolya"));
-        System.out.println(addUser("Olya"));
-        System.out.println(addUser("Masha"));
+        System.out.println(user1);
+        System.out.println(user2);
+        System.out.println(user3);
+        System.out.println(user4);
+        System.out.println(user5);
+        System.out.println();
+
+        User user6 = new User ("Misha");
+
+        System.out.println(user1);
+        System.out.println(user6);
+        System.out.println(user3);
+        System.out.println(user5);
     }
 }
