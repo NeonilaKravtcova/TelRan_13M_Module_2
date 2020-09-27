@@ -49,7 +49,7 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return "Bankaccount number: " +
+        return "Bank account number: " +
                 account +
                 "\n" + client.toStringName() +
                 "\nBalance: " + balance;

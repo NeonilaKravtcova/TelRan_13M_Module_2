@@ -50,11 +50,14 @@ public class BankApp {
         myBank.transferMoney(10100002, 10100001, 700);
         myBank.transferMoney(10100002, 10100011, 700);
 
-        myBank.getCountClientsPerSex(Sex.FEMALE);
-        myBank.displayClientsPerSex(myBank.getClientsPerSex(Sex.FEMALE));
+        myBank.displayClientsPerSex(Sex.MALE);
+        myBank.displayClientsPerSex(Sex.FEMALE);
 
-        myBank.getCountClientsPerSex(Sex.MALE);
-        myBank.displayClientsPerSex(myBank.getClientsPerSex(Sex.MALE));
+        Person.toStringNameNew(myBank.getClientsPerSex(Sex.MALE));
+        Person.toStringNameNew(myBank.getClientsPerSex(Sex.FEMALE));
+
+
+
     }
 }
 

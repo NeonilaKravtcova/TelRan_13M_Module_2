@@ -8,7 +8,6 @@ public class Bank {
     private BankAccount[] accounts;
     private int size;
     private Person[] clients;
-    private static int count;
 
     public Bank(int capacity) {
         accounts = new BankAccount[capacity];
@@ -98,24 +97,37 @@ public class Bank {
         return true;
     }
 
-    public void getCountClientsPerSex(Sex sex){
-        count = 0;
-/*        System.out.println("The following " + sex + " clients are found:");
-        System.out.println("---------------------------------------");*/
+    public int getCountClientsPerSex(Sex sex){
+        int count = 0;
         for (int i = 0; i < size; i++) {
             if (accounts[i].getClient().getSex().equals(sex)) {
                 count++;
-                //System.out.println(count + ". " + accounts[i].getClient().toStringName() + "\n");
+            }
+        }
+        return count;
+    }
+
+    public void displayClientsPerSex(Sex sex){
+        int count = 0;
+        System.out.println("---------------------------------------");
+        System.out.println("The following " + sex + " clients are found:");
+        System.out.println("---------------------------------------");
+        for (int i = 0; i < size; i++) {
+            if (accounts[i].getClient().getSex().equals(sex)) {
+                count++;
+                System.out.println(count + ". " + accounts[i].getClient().toStringName() + "\n");
             }
         }
         System.out.println("-------------------------------");
-        System.out.println("Total: " + count + " " + sex + " clients are found");
-        System.out.println("-------------------------------");
+        System.out.println("TOTAL: " + count + " clients");
+        System.out.println();
     }
 
     public Person[] getClientsPerSex(Sex sex){
         int j = 0;
-        Person[] clients = new Person[count];
+        Person[] clients = new Person[getCountClientsPerSex(sex)];
+        System.out.println("SEX: " + sex);
+        System.out.println("------------");
         for (int i = 0; i < size; i++) {
             if (accounts[i].getClient().getSex().equals(sex)) {
                 clients[j] = accounts[i].getClient();
@@ -124,12 +136,4 @@ public class Bank {
         }
         return clients;
     }
-
-    public void displayClientsPerSex(Person[] persons){
-        for (int i = 0; i < persons.length; i++) {
-            System.out.println(i + 1 + ". " + persons[i].toStringName());
-        }
-        System.out.println();
-    }
-
 }

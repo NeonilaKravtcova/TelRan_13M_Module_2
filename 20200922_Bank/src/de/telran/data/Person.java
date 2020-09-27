@@ -79,4 +79,11 @@ public class Person {
     public String toStringName(){
         return "Client: " + firstName + " " + lastName;
     }
+
+    public static void toStringNameNew(Person[] people){
+        for (int i = 0; i < people.length; i++) {
+            System.out.println(people[i].toStringName());
+        }
+        System.out.println();
+    }
 }
