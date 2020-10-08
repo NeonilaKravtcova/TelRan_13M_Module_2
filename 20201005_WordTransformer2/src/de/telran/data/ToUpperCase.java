@@ -1,6 +1,6 @@
 package de.telran.data;
 
-public class ToUpperCase implements Transformable {
+public class ToUpperCase implements WordChecker {
     public boolean checkLength(String input){
         return input.length() == 3;
     }

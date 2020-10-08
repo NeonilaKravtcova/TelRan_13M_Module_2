@@ -44,3 +44,4 @@ public class ToUpperCaseTest {
         Assert.assertEquals("Let", toUpperCase.action(input));
     }
 }
+
