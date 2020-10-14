@@ -8,4 +8,5 @@ public class ToLowerCase implements WordChecker {
     public String action(String input){
         return input.toLowerCase();
     }
+
 }

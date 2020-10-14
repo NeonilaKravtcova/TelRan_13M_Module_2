@@ -1,11 +1,13 @@
-import de.telran.data.ToUpperCase;
+import de.telran.data.ToStarCase;
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
-public class ToUpperCaseTest {
+public class ToStarCaseTest {
+    ToStarCase toStarCase;
 
-    ToUpperCase toUpperCase = new ToUpperCase();
+    {
+        toStarCase = new ToStarCase();
+    }
 
     @Before
     public void init(){
@@ -17,20 +19,18 @@ public class ToUpperCaseTest {
         System.out.println("Test over\n");
     }
 
-
     @Test
     public void checkLengthTrue(){
-        assertEquals(3, "let".length());
+        assertEquals(6, "method".length());
     }
 
     @Test
     public void checkLengthFalse(){
-        assertNotEquals(3, "us".length());
+        assertNotEquals(6, "this".length());
     }
 
     @Test
-    public void actionToUpperCase(){
-        assertEquals("LET", toUpperCase.action("let"));
+    public void actionToLowerCase(){
+        assertEquals("****", toStarCase.action("well"));
     }
 }
-

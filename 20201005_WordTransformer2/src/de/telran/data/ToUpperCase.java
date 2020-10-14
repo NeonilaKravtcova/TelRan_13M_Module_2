@@ -8,4 +8,5 @@ public class ToUpperCase implements WordChecker {
     public String action(String input){
         return input.toUpperCase();
     }
+
 }

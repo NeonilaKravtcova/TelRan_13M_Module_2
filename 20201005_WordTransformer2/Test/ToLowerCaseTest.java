@@ -1,11 +1,13 @@
-import de.telran.data.ToUpperCase;
+import de.telran.data.ToLowerCase;
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
-public class ToUpperCaseTest {
+public class ToLowerCaseTest {
+    ToLowerCase toLowerCase;
 
-    ToUpperCase toUpperCase = new ToUpperCase();
+    {
+        toLowerCase = new ToLowerCase();
+    }
 
     @Before
     public void init(){
@@ -17,20 +19,19 @@ public class ToUpperCaseTest {
         System.out.println("Test over\n");
     }
 
-
     @Test
     public void checkLengthTrue(){
-        assertEquals(3, "let".length());
+        assertEquals(4, "this".length());
     }
 
     @Test
     public void checkLengthFalse(){
-        assertNotEquals(3, "us".length());
+        assertNotEquals(4, "try".length());
     }
 
     @Test
-    public void actionToUpperCase(){
-        assertEquals("LET", toUpperCase.action("let"));
+    public void actionToLowerCase(){
+        assertEquals("this", toLowerCase.action("THIS"));
     }
-}
 
+}

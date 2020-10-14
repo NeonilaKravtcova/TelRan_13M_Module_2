@@ -10,4 +10,5 @@ public class WordTransformer {
         }
         return String.join(" ", strings);
     }
+
 }

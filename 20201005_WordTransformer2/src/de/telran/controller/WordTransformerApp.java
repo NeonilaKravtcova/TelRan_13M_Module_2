@@ -11,4 +11,5 @@ public class WordTransformerApp {
         System.out.println(WordTransformer.wordTransform("Let us try to solve THIS", new ToLowerCase()));
         System.out.println(WordTransformer.wordTransform("Let us try to solve this method", new ToStarCase()));
     }
+
 }

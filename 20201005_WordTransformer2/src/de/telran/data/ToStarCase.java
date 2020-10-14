@@ -8,4 +8,5 @@ public class ToStarCase implements WordChecker {
     public String action(String input) {
         return input.replaceAll(".","*");
     }
+
 }
