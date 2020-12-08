@@ -251,6 +251,7 @@ class OurArrayListTest {
      * The function fills the list with the numbers from 0 to (number - 1)
      *
      * @param number the amount of numbers to be inserted into the list
+     *
      */
     private void addElementsToList(int number) {
         for (int j = 0; j < number; j++) {

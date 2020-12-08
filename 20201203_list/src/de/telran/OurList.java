@@ -1,5 +1,7 @@
 package de.telran;
 
+import java.util.Iterator;
+
 public interface OurList<Type> {
 
     /**
@@ -55,4 +57,12 @@ public interface OurList<Type> {
      * @return true if the obj is present in this list (according to the method 'equals')
      */
     boolean contains(Type obj);
+
+    /**
+     *
+     * @return iterator object which iterates from the beginning to the end
+     */
+    Iterator<Type> forwardIterator();
+
+    Iterator<Type> backwardIterator();
 }

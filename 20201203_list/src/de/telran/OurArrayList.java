@@ -1,6 +1,8 @@
 package de.telran;
 
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class OurArrayList<Type> implements OurList<Type>{
 
@@ -18,7 +20,7 @@ public class OurArrayList<Type> implements OurList<Type>{
         if (size == source.length)
             increaseCapacity();
 
-//        source[size++] = element;
+//      source[size++] = element;
         source[size] = element;
         size++;
     }
@@ -74,11 +76,18 @@ public class OurArrayList<Type> implements OurList<Type>{
 
     @Override
     public boolean remove(Type obj){
+        if (obj == null){
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null){
+                    removeById(i);
+                    return true;
+                }
+            }
+            return false;
+        }
         for (int i = 0; i < size; i++) {
-            if (source[i].equals(obj)){
-                System.arraycopy(source, i + 1, source, i, size - i - 1);
-                source[size-1] =null;
-                size--;
+            if (obj.equals(source[i])){
+                removeById(i);
                 return true;
             }
         }
@@ -87,12 +96,72 @@ public class OurArrayList<Type> implements OurList<Type>{
 
     @Override
     public boolean contains(Type obj){
+        if (obj == null) {
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null)
+                    return true;
+            }
+            return false;
+        }
         for (int i = 0; i < size; i++) {
-            if (source[i].equals(obj)){
+            if (obj.equals(source[i])){
                 return true;
             }
         }
         return false;
     }
 
+    @Override
+    public Iterator<Type> forwardIterator() {
+        //Iterator<Type> iterator = new ForwardIterator();
+        //return iterator;
+        return new ForwardIterator();
+    }
+
+    @Override
+    public Iterator<Type> backwardIterator() {
+        return new BackwardIterator();
+    }
+
+    private class BackwardIterator implements Iterator<Type> {
+
+        int currentIndex = size - 1;
+
+        @Override
+        public boolean hasNext(){
+            return currentIndex >= 0;
+        }
+
+        @Override
+        public Type next(){
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            } else return (Type) source[currentIndex--];
+        }
+
+    }
+
+    private class ForwardIterator implements Iterator<Type> {
+
+        int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return this.currentIndex < size;
+        }
+
+        @Override
+        public Type next() {
+/*            if (currentIndex >= size){
+                throw new IndexOutOfBoundsException();}*/
+
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+/*            Type res = (Type) source[currentIndex];
+            currentIndex++;
+            return res;*/
+            return (Type) source[currentIndex++];
+        }
+    }
 }
