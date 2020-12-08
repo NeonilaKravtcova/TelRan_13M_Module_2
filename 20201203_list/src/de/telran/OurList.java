@@ -65,4 +65,5 @@ public interface OurList<Type> {
     Iterator<Type> forwardIterator();
 
     Iterator<Type> backwardIterator();
+
 }
