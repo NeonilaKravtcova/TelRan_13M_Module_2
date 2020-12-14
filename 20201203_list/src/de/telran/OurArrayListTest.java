@@ -2,11 +2,15 @@ package de.telran;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OurArrayListTest {
 
-    OurArrayList<String> list = new OurArrayList<>();
+    //OurArrayList<String> list = new OurArrayList<>();
+    OurLinkedList<String> list = new OurLinkedList<>(null, null, 0);
 
     @Test
     public void testSize_emptyList_zero() {
@@ -129,7 +133,7 @@ class OurArrayListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.removeById(17));
     }
 
-    @Test
+/*    @Test
     public void testAddLast_addInitialCapacityPlusOneElements_correctSizAndCapacity() {
         for (int i = 0; i < 17; i++) {
             list.addLast(Integer.toString(i));
@@ -137,7 +141,7 @@ class OurArrayListTest {
 
         assertEquals(17, list.size());
         assertEquals(32, list.source.length);
-    }
+    }*/
 
     @Test
     public void testSet_toFirstIndex() {
@@ -177,7 +181,6 @@ class OurArrayListTest {
     @Test
     public void testClear_nonEmptyList() {
         addElementsToList(20);
-
         list.clear();
         assertEquals(0, list.size());
     }
@@ -243,6 +246,61 @@ class OurArrayListTest {
         assertTrue(list.contains("Ivan"));
         assertFalse(list.contains("Evan"));
 
+    }
+
+    @Test
+    public void testForwardIterator_EmptyList(){
+        OurList<String> strings = new OurArrayList<>();
+        Iterator<String> iterator = strings.forwardIterator();
+
+        assertFalse(iterator.hasNext());
+        assertThrows(NoSuchElementException.class, () -> {//Было IndexOutOfBoundsException.class
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testForwardIterator_oneElement(){
+        String[] expected = {"Evgeny"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Evgeny");
+        Iterator<String> iterator = strings.forwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()){
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertEquals(1, i);
+
+        assertThrows(NoSuchElementException.class, () -> {//IndexOutOfBoundsException.class
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testForwardIterator_severalElements(){
+        String[] expected = {"Evgeny", "Borisovich", "Anna", "Sergeevna"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Evgeny");
+        strings.addLast("Borisovich");
+        strings.addLast("Anna");
+        strings.addLast("Sergeevna");
+
+        Iterator<String> iterator = strings.forwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()){
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertEquals(4, i);
+
+        assertThrows(NoSuchElementException.class, () -> {//IndexOutOfBoundsException.class
+            iterator.next();
+        });
     }
 
 
