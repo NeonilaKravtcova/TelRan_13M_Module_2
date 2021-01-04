@@ -31,7 +31,7 @@ public class StackMax {
 
     public int getMax() {
         if (source.isEmpty()){
-            return 0;
+            throw new EmptyDequeException();
         }
         int max = source.getFirst();
         for (int elt : source) {

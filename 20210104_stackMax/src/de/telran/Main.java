@@ -21,5 +21,6 @@ public class Main {
 
         deque.addLast(34);
         System.out.println(deque.getMax());
+
     }
 }
