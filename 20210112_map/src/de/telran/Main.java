@@ -5,12 +5,20 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Map<Auto, String> map = new HashMap<>();
+/*        Map<Auto, String> map = new HashMap<>();
         fillMap(map);
 
         Auto anotherGreyOpel = new Auto("Grey", "Opel");
         String value = map.get(anotherGreyOpel);
-        System.out.println(value);
+        System.out.println(value);*/
+
+        Map<Auto, String> mapAuto = new HashMap<>();
+        Auto auto1 = new Auto("Grey", "Opel");
+        Auto auto2 = new Auto("Red", "Mazda");
+        Auto auto3 = new Auto("Yellow", "Mercedes");
+        Auto auto4 = new Auto("Blue", "Volkswagen");
+
+        mapAuto.put(auto1, "Owner: Olga");
 
         }
 
