@@ -35,7 +35,6 @@ class Auto {
     public Auto(String make, String color) {
         this.make = make;
         this.color = color;
-
     }
 
     @Override

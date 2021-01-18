@@ -1,8 +1,6 @@
 package de.telran;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
 
 /**
  * The implementation of OurMap cannot contain null key
@@ -13,7 +11,7 @@ import java.util.Objects;
 
 public class OurHashMap<K, V> implements OurMap<K, V> {
     private static final double DEFAULT_LOAD_FACTOR = 0.75;
-    private static final int INITIAL_CAPACITY = 16;
+    private static final int INITIAL_CAPACITY = 4;
 
     private Pair<K, V>[] source;
     private int size;
@@ -42,61 +40,81 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
     @Override
     public V put(K key, V value) {
         if (size >= loadFactor * capacity) {
+            System.out.println("Запуск resize()");
             resize();
         }
         Pair<K, V> pair = find(key);
 
         if (pair != null) {
-            System.out.println("Pair != null");
             V res = pair.value;//Сохраняем старое значение, чтобы его вернуть
             pair.value = value;
             return res;
-        } else {
-            System.out.println("Pair is null");
         }
 
-
         int index = hash(key) % capacity;
+        System.out.println("index = " + index);
         Pair<K, V> newPair = new Pair<>(key, value, source[index]);
         source[index] = newPair;
 
-        System.out.println("Pair key: " + pair.key + ", pair value: " + pair.value);
         size++;
-        return newPair.value;
+        return null;
     }
 
-    private void resize() {
-        int newCapacity = capacity * 2;
-        Pair<K, V>[] newSource = new Pair[newCapacity];
+/*    private void resize() {
+        capacity = capacity * 2;
+        Pair<K, V>[] newSource = new Pair[capacity];
 
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < capacity / 2; i++) {
             Pair<K, V> currentPair = source[i];
-            while (currentPair != null) {
-                int index = hash(currentPair.key) % newCapacity;
-                newSource[index].next = newSource[index];
-                //currentPair.next = newSource[index];
-                newSource[index] = currentPair;
-                currentPair = currentPair.next;
-            }
-        }
 
-        //14.01.2021
-/*        for (Pair<K, V> cell : source){
-            Pair<K, V> currentPair = cell;
-            while (currentPair != null){
-                int newIndex = hash(currentPair.key) % newCapacity;
-                currentPair.next = newSource[newIndex];
-                newSource[newIndex] = currentPair;
+            while (currentPair != null) {
+                System.out.println("CurrentPair != null");
+                int index = hash(currentPair.key) % capacity;
+                System.out.println("New index " + index);
+                Pair<K, V> next = newSource[index];
+
+                newSource[index] = currentPair;
+                newSource[index].next = next;
+                //currentPair = next;
                 currentPair = currentPair.next;
+
+
             }
         }*/
+
+
+/*        for (Pair<K, V> pair : source) {
+            if (pair != null) {
+                int index = hash(pair.key) % newCapacity;
+                newSource[index] = pair;
+            }
+        }*/
+
+        //15.01.2021
+        private void resize() {
+            capacity = capacity * 2;
+            Pair<K, V>[] newSource = new Pair[capacity];
+            for (Pair<K, V> cell : source) {
+                Pair<K, V> currentPair = cell;
+                while (currentPair != null) {
+                    System.out.println("CurrentPair != null");
+                    int newIndex = hash(currentPair.key) % capacity;
+                    System.out.println("New index " + newIndex);
+                    Pair<K, V> next = currentPair.next;
+
+                    currentPair.next = newSource[newIndex];
+                    newSource[newIndex] = currentPair;
+
+                    currentPair = next;
+                }
+            }
 
         source = newSource;
     }
 
     private Pair<K, V> find(K key) {
-        //int index = hash(key) % capacity;
-        int index = Math.abs(key.hashCode() % capacity);
+        int index = hash(key) % capacity;
+        //int index = Math.abs(key.hashCode() % capacity);
         Pair<K, V> current = source[index];
         while (current != null) {
             if (key.equals(current.key)) {
@@ -121,28 +139,22 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
 
         Pair<K, V> pairToRemove = find(key);
 
-        //assert pairToRemove != null;
+        assert pairToRemove != null;
         V res = pairToRemove.value;
 
-        if (size == 0 || res == null) {
-            return res;
-        }
-        if (pairToRemove.next == null) {
-            pairToRemove = null;
-        }
-
         int index = hash(key) % capacity;
+
         Pair<K, V> currentPair = source[index];
 
-        while (currentPair != null) {
-            if (currentPair.equals(pairToRemove)){
-                currentPair = pairToRemove.next;
-                pairToRemove = null;
-            } else {
+        if (source[index].key.equals(key)){
+            source[index] = source[index].next;
+        } else {
+            currentPair = currentPair.next;
+            while (!currentPair.key.equals(key)){
                 currentPair = currentPair.next;
             }
+            currentPair.value = null;
         }
-
         size--;
         return res;
     }
@@ -157,6 +169,44 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
         return null;
     }
 
+    private class KeyIterator implements Iterator<K>{
+        int index;
+        int position;
+        Pair<K, V> currentPair;
+
+        KeyIterator(){
+            if (size == 0){
+
+            }
+            int i = 0;
+            while (source[i] == null){
+                i++;
+            }
+
+            currentPair = source[i];
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public K next() {
+            if (position >= size){
+                throw new IndexOutOfBoundsException();
+            }
+
+            K res = currentPair.key;
+
+            if (currentPair.next != null){
+                currentPair = currentPair.next;
+            }
+
+            return null;
+        }
+    }
+
     @Override
     public Iterator<V> valueIterator() {
         return null;
@@ -166,6 +216,7 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
     public Iterator iterator() {
         return null;
     }
+
 
     public static class Pair<K, V> {
         K key;
