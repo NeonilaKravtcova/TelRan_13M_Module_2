@@ -9,6 +9,14 @@ public class Auto {
         this.color = color;
     }
 
+    public String getMake() {
+        return make;
+    }
+
+    public Colors getColor() {
+        return color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,8 +37,6 @@ public class Auto {
 
     @Override
     public String toString() {
-        return "Auto: " +
-                make + '\'' +
-                ", " + color;
+        return "Auto: " + make + " " + color;
     }
 }

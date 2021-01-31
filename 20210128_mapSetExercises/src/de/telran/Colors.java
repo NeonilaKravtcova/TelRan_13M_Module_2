@@ -9,4 +9,5 @@ public enum Colors {
     WHITE,
     BLACK,
     ROSE
+
 }

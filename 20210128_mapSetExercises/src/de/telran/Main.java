@@ -1,7 +1,6 @@
 package de.telran;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,9 +25,13 @@ public class Main {
         Auto auto8 = new Auto("Jeep", Colors.GREEN);
         Auto auto9 = new Auto("Ford Ranger", Colors.WHITE);
 
+        Map map = exercise.groupByMake(Arrays.asList(auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9));
+        System.out.println(map.toString());
+        System.out.println();
 
-        exercise.groupByMake(Arrays.asList(auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9));
-
+        List list = exercise.sortByAlphabet(Arrays.asList("бекон", "арбуз", "бобер", "бидон", "алмаз", "банан", "боб",
+                "бобёр", "енот", "ёж", "ель", "ёлка"));
+        System.out.println(list);
     }
 
 }
