@@ -1,6 +1,3 @@
-I
-would
-like
-to write
-this
-to the file
+hello
+hi
+privet
