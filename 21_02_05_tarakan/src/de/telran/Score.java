@@ -13,4 +13,5 @@ public class Score {
     public String toString() {
         return name + " - " + seconds + " scores";
     }
+
 }

@@ -16,5 +16,6 @@ public class Main {
         new StratchRace(names, distance, scoreList, startTime).runTarakan();
 
     }
+
 }
 

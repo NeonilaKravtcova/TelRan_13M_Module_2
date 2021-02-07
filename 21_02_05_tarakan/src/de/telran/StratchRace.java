@@ -34,32 +34,32 @@ public class StratchRace {
         outPrintScoreList(scoreList);
     }
 
-    public static void initListOfTarakans(List<String> names, List<Tarakan> tarakans, int distance,
+    public void initListOfTarakans(List<String> names, List<Tarakan> tarakans, int distance,
                                           List<Score> scoreList, long startTime) {
         for (String name : names) {
             tarakans.add(new Tarakan(name, distance, scoreList, startTime));
         }
     }
 
-    public static void createThreads(List<Tarakan> tarakans, List<Thread> threads) {
+    public void createThreads(List<Tarakan> tarakans, List<Thread> threads) {
         for (Tarakan tarakan : tarakans) {
             threads.add(new Thread(tarakan));
         }
     }
 
-    public static void startThreads(List<Thread> threads) {
+    public void startThreads(List<Thread> threads) {
         for (Thread thread : threads) {
             thread.start();
         }
     }
 
-    public static void joinThreads(List<Thread> threads) throws InterruptedException {
+    public void joinThreads(List<Thread> threads) throws InterruptedException {
         for (Thread thread : threads) {
             thread.join();
         }
     }
 
-    public static void outPrintScoreList(List<Score> scoreList) {
+    public void outPrintScoreList(List<Score> scoreList) {
         for (Score scores : scoreList) {
             System.out.println(scores.toString());
         }
