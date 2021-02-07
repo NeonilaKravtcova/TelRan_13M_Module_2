@@ -20,6 +20,8 @@ public abstract class FileAction {
      * @param fileName name of the file to handle
      */
     public void handleFile(String fileName) throws IOException {
-        fileOperations.writeList(perform(fileOperations.readToList(fileName)), fileName);
+        List<String> text = fileOperations.readToList(fileName);
+        List<String> performedText = perform(text);
+        fileOperations.writeList(performedText, fileName);
     }
 }
