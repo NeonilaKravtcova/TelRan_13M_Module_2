@@ -32,5 +32,6 @@ public class Main {
         for (FootballClub club : res) {
             System.out.println(club);
         }*/
+
     }
 }

@@ -13,9 +13,11 @@ public class BigLeague {
     public List<FootballClub> sortByCountryAndPoints(List<FootballClub> clubs) {
         List<FootballClub> res = new ArrayList<>(clubs);
 
-        res.sort(new AlphabetComparator());
+        //res.sort(new AlphabetComparator());
 
-        res.sort(new PointsComparator());
+        //res.sort(new PointsComparator());
+
+        res.sort(new ComparatorByTwoFields());
 
         return res;
     }
