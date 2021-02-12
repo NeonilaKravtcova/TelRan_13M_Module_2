@@ -3,24 +3,23 @@ package de.telran;
 public class OneItemStringQueue {
 
     private final Object mutex = new Object();
+    private final Object mutex2 = new Object();
 
     private String source;
 
-
-    public OneItemStringQueue(String source) {
-        this.source = source;
-    }
-
-    public void addFirst(String input) {
+    public void addFirst(String input) throws InterruptedException {
         System.out.println("addFirst(" + input + ") runs");
-
-        source = input;
-        mutex.notify();
-/*        synchronized (this){
+        synchronized (mutex2){
             while (source != null){
-                this.notifyAll();
+                mutex2.wait();
             }
-        }*/
+        }
+        synchronized (mutex){
+            //while (source != null){
+                source = input;
+                mutex.notify();
+            }
+        //}
     }
 
     public String removeLast() throws InterruptedException {
@@ -28,13 +27,17 @@ public class OneItemStringQueue {
         synchronized (mutex) {
             while (source == null) {
                 mutex.wait();
+                System.out.println("The thread id " + Thread.currentThread().getId() + " fell asleep");
             }
-            mutex.notifyAll();
+        }
+        synchronized (mutex2){
+            String res = source;
+            source = null;
+            System.out.println("The thread id " + Thread.currentThread().getId() + " fell asleep");
+            mutex2.notify();
+            return res;
         }
 
-        String res = source;
-        source = null;
-        return res;
     }
 }
 

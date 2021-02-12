@@ -2,7 +2,7 @@ package de.telran;
 
 public class MessageConsumer implements Runnable {
 
-    private OneItemStringQueue queue;
+    private final OneItemStringQueue queue;
 
     public MessageConsumer(OneItemStringQueue queue) {
         this.queue = queue;
@@ -11,17 +11,15 @@ public class MessageConsumer implements Runnable {
     @Override
     public void run() {
         System.out.println("MessageConsumer run() runs");
-        while (true){
-            try {
+
+        try {
+            while (true) {
                 String str = queue.removeLast();
                 System.out.println("String " + str + " was removed");
-            } catch (InterruptedException exception) {
-                exception.printStackTrace();
             }
-            //Здесь на каждой итерации вычитываем очередь и распечатываем сообщение
-            //TODO accept an item from our one message queue and handle it (for example just print it out)
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
         }
-
 
     }
 }
