@@ -1,0 +1,4 @@
+hello, world#upper_case
+hello
+hello world@upper_case
+hello world#upper_case#hello
