@@ -1,24 +1,25 @@
 package de.telran;
 
+import de.telran.operation.IStringOperation;
 import de.telran.operation.OperationContext;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 public class Consumer implements Runnable {
 
-    private final BlockingQueue<String> queue;
-    private PrintWriter writer;
-    private final OperationContext context;
-    private final String fileName;
+    private static final String SEPARATOR = "#";
+    private static final String WRONG_FORMAT = "wrong format";
+    private static final String WRONG_OPERATION = "wrong operation";
 
-    public Consumer(BlockingQueue<String> queue, PrintWriter writer, OperationContext context, String fileName) {
+    private final BlockingQueue<String> queue;
+    private final PrintWriter writer;
+    private final OperationContext context;
+
+    public Consumer(BlockingQueue<String> queue, PrintWriter writer, OperationContext context) {
         this.queue = queue;
         this.writer = writer;
         this.context = context;
-        this.fileName = fileName;
     }
 
     @Override
@@ -28,32 +29,32 @@ public class Consumer implements Runnable {
             while (true) {
                 line = queue.take();
                 String res = handleRawString(line);
-                writer = new PrintWriter(new FileWriter(fileName, true), true);
                 writer.println(res);
-                writer.close();
+                writer.flush();
             }
-        } catch (InterruptedException | FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     String handleRawString(String line) {
-        String res;
-        List<String> parsedString = Arrays.asList(line.split("#", 0));
-        if (parsedString.size() == 1) {
-            return line + "#wrong format";
+
+        String[] parsedString = line.split(SEPARATOR);
+        if (parsedString.length != 2) {
+            return line + SEPARATOR + WRONG_FORMAT;
         }
-        String stringToHandle = parsedString.get(0);
-        String operation = parsedString.get(1);
-        if (stringToHandle == null || operation.contains("#")) {
-            res = stringToHandle + "#wrong format";
-        } else if (!context.getOperation(operation).getName().equals(operation)) {
-            res = line + "#wrong format";
-        } else {
-            res = context.getOperation(operation).operate(stringToHandle);
+
+        String stringToHandle = parsedString[0];
+        String operationName = parsedString[1].toLowerCase();
+        System.out.println("/" + parsedString[0] + "/ " + parsedString[1]);
+        //IStringOperation operationToApply = context.getOperation(operationName);
+
+        if (stringToHandle.equals("")){
+            return line + SEPARATOR + WRONG_FORMAT;
         }
-        return res;
+        if (context.getOperation(operationName) == null) {
+            return line + SEPARATOR + WRONG_OPERATION;
+        }
+        return context.getOperation(operationName).operate(stringToHandle);
     }
 }
