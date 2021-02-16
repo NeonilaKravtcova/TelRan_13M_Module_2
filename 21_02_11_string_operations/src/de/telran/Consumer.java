@@ -4,13 +4,14 @@ import de.telran.operation.IStringOperation;
 import de.telran.operation.OperationContext;
 
 import java.io.*;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 
 public class Consumer implements Runnable {
 
-    private static final String SEPARATOR = "#";
-    private static final String WRONG_FORMAT = "wrong format";
-    private static final String WRONG_OPERATION = "wrong operation";
+    public static final String SEPARATOR = "#";
+    public static final String WRONG_FORMAT = "wrong format";
+    public static final String WRONG_OPERATION = "wrong operation";
 
     private final BlockingQueue<String> queue;
     private final PrintWriter writer;
@@ -24,16 +25,36 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            String line;
-            while (true) {
+
+        boolean isAlive = true;
+
+        while (isAlive) {
+            try {
+                String line;
+                //while (true) {
                 line = queue.take();
                 String res = handleRawString(line);
                 writer.println(res);
-                writer.flush();
+                //writer.flush();
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+                isAlive = false;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        }
+
+        //finish the queue - когда мы знаем, что в очереди больше не появится элементов
+        while (true) {
+            String line;
+
+            try {
+                line = queue.remove();
+            } catch (NoSuchElementException e) {
+                e.printStackTrace();
+                break;
+            }
+
+            String res = handleRawString(line);
+            writer.println(res);
         }
     }
 
@@ -45,9 +66,9 @@ public class Consumer implements Runnable {
         }
 
         String stringToHandle = parsedString[0];
-        String operationName = parsedString[1].toLowerCase();
-        System.out.println("/" + parsedString[0] + "/ " + parsedString[1]);
-        //IStringOperation operationToApply = context.getOperation(operationName);
+        String operationName = parsedString[1]/*.toLowerCase()*/;
+
+        IStringOperation operationToApply = context.getOperation(operationName);
 
         if (stringToHandle.equals("")){
             return line + SEPARATOR + WRONG_FORMAT;
@@ -55,6 +76,7 @@ public class Consumer implements Runnable {
         if (context.getOperation(operationName) == null) {
             return line + SEPARATOR + WRONG_OPERATION;
         }
-        return context.getOperation(operationName).operate(stringToHandle);
+        return operationToApply.operate(stringToHandle);
     }
 }
+

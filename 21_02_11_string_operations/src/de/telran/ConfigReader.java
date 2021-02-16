@@ -21,7 +21,7 @@ public class ConfigReader {
     public List<String> getOperationPaths(){
         String pathsString = properties.getProperty(DEFAULT_PATHS);
         String[] paths = pathsString.split(",");
-        return new ArrayList<>(Arrays.asList(paths));
+        return Arrays.asList(paths);
     }
 
 

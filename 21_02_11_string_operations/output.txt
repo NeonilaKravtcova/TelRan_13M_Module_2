@@ -1,52 +1,52 @@
 #upper_case#wrong format
 hello#opper_case#wrong operation
+01 hello, world#UPPER_CASE#wrong operation
 02 hello#wrong format
 03 hello world@upper_case#wrong format
 04 hello world#upper_case#hello#wrong format
 05 abddefg@upper_cse#wrong format
-01 HELLO, WORLD
+06 hello
 07 hello,#wrong format
 08 hello world@upper_case#wrong format
 09 hello world#upper_case#hello#wrong format
 10 abddefg@upper_cse#wrong format
-06 hello
+11 HELLO, WORLD
 12 hello,#wrong format
 13 hello world@upper_case#wrong format
 14 hello world#upper_case#hello#wrong format
 15 abddefg@upper_cse#wrong format
-11 HELLO, WORLD
-17 hello,#wrong format
 16 HELLO, WORLD
+17 hello,#wrong format
 18 hello world@upper_case#wrong format
 19 hello world#upper_case#hello#wrong format
 20 abddefg@upper_cse#wrong format
+21 HELLO, WORLD
 22 hello,#wrong format
 23 hello world@upper_case#wrong format
 24 hello world#upper_case#hello#wrong format
-21 HELLO, WORLD
 25 abddefg@upper_cse#wrong format
 26 HELLO, WORLD
-28 hello world@upper_case#wrong format
 27 hello,#wrong format
+28 hello world@upper_case#wrong format
 29 hello world#upper_case#hello#wrong format
 30 abddefg@upper_cse#wrong format
-32 hello,#wrong format
 31 HELLO, WORLD
+32 hello,#wrong format
 33 hello world@upper_case#wrong format
 34 hello world#upper_case#hello#wrong format
-37 hello,#wrong format
-38 hello world@upper_case#wrong format
 35 abddefg@upper_cse#wrong format
 36 HELLO, WORLD
+37 hello,#wrong format
+38 hello world@upper_case#wrong format
 39 hello world#upper_case#hello#wrong format
 40 abddefg@upper_cse#wrong format
-42 hello,#wrong format
 41 HELLO, WORLD
+42 hello,#wrong format
 43 hello world@upper_case#wrong format
 44 hello world#upper_case#hello#wrong format
+45 abddefg@upper_cse#wrong format
+46 HELLO, WORLD
 47 hello,#wrong format
 48 hello world@upper_case#wrong format
-45 abddefg@upper_cse#wrong format
 49 hello world#upper_case#hello#wrong format
-46 HELLO, WORLD
 50 abddefg#upper_cse#wrong operation

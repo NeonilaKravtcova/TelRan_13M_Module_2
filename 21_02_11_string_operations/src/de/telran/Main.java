@@ -11,32 +11,41 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private static final String FILE_INPUT = "input.txt";
+    private static final String FILE_OUTPUT = "output.txt";
 
-        //TODO read the props file and retrieve the operation paths from it.
-        //TODO Then create an instance of the OperationContext using these paths.
-        OperationContext context = new OperationContext(new ConfigReader("config.props").getOperationPaths());
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, InterruptedException {
 
-        final String FILE_INPUT = "input.txt";
-        final String FILE_OUTPUT = "output.txt";
+        ConfigReader configReader = new ConfigReader("config.props");
+        List<String> operationPaths = configReader.getOperationPaths();
+        OperationContext context = new OperationContext(operationPaths);
 
         BufferedReader reader = new BufferedReader(new FileReader(FILE_INPUT));
         PrintWriter writer = new PrintWriter(new FileOutputStream(FILE_OUTPUT));
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
 
-        Supplier supplier = new Supplier(reader, queue);
-
         List<Consumer> consumers = createListConsumers(3, queue, writer, context);
 
-        List<Thread> threads = createThreads(consumers);
+        Supplier supplier = new Supplier(reader, queue);
 
-        new Thread(supplier).start();
+        List<Thread> consumerThreads = createThreads(consumers);
 
-        startThreads(threads);
+        Thread supplierThread = new Thread(supplier);
 
-        //supplierThread.join();
+        supplierThread.start();
 
-        //writer.close();
+        startThreads(consumerThreads);
+
+        supplierThread.join();//ждём, пока отработает supplier
+        //после этого надо прекратить работу consumer-ов
+
+        interruptThreads(consumerThreads);
+
+        joinThreads(consumerThreads);
+
+        writer.close();
+
+        reader.close();
 
     }
 
@@ -60,6 +69,18 @@ public class Main {
         for (Thread thread : threads) {
             //thread.setDaemon(true);
             thread.start();
+        }
+    }
+
+    public static void interruptThreads(List<Thread> threads) {
+        for (Thread thread : threads) {
+            thread.interrupt();
+        }
+    }
+
+    public static void joinThreads(List<Thread> threads) throws InterruptedException {
+        for (Thread thread : threads) {
+            thread.join();
         }
     }
 }
