@@ -16,10 +16,13 @@ public class SuperPredicateTest {
     IntPredicate pred4 = x -> x * 5 >= 20 && x * 5 <=30;
 
     List<IntPredicate> predicates = new ArrayList(Arrays.asList(pred1, pred2, pred3, pred4));
+    List<IntPredicate> emptyList = new ArrayList();
+
 
     SuperPredicate superPredicate = new SuperPredicate();
 
     IntPredicate super1 = superPredicate.intersect(predicates);
+    IntPredicate super2 = superPredicate.intersect(emptyList);
 
     @Test
     public void intersect_rangeFrom1To10Test(){
@@ -33,5 +36,7 @@ public class SuperPredicateTest {
         Assert.assertFalse(super1.test(8));
         Assert.assertFalse(super1.test(9));
         Assert.assertFalse(super1.test(10));
+        Assert.assertTrue(super2.test(1));
     }
+
 }
