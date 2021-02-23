@@ -31,4 +31,6 @@ public class NumbersTest {
             Assert.assertFalse(number.isPrime(i));
         }
     }
+
 }
+

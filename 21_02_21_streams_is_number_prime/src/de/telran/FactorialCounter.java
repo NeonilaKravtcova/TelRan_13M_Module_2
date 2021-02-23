@@ -9,5 +9,4 @@ public class FactorialCounter {
         return IntStream.rangeClosed(1, n)
                 .reduce(1, (oldValue, x) -> oldValue * x);
     }
-
 }

@@ -6,6 +6,7 @@ public class OddNumbersSum {
 
     public int getSum(int a, int b){
         return IntStream.rangeClosed(a, b)
-                .sum()/*reduce(a, (oldValue, x) -> oldValue + x)*/;
+                .filter(x -> x % 2 == 1)
+                .sum();
     }
 }
