@@ -1,0 +1,52 @@
+#upper_case
+hello#opper_case
+01 hello, world#UPPER_CASE
+02 hello
+03 hello world@upper_case
+04 hello world#upper_case#hello
+05 abddefg@upper_cse
+06 HELLO#lower_case
+07 hello,
+08 hello world@upper_case
+09 hello world#upper_case#hello
+10 abddefg@upper_cse
+11 hello, world#upper_case
+12 hello,
+13 hello world@upper_case
+14 hello world#upper_case#hello
+15 abddefg@upper_cse
+16 hello, world#upper_case
+17 hello,
+18 hello world@upper_case
+19 hello world#upper_case#hello
+20 abddefg@upper_cse
+21 hello, world#upper_case
+22 hello,
+23 hello world@upper_case
+24 hello world#upper_case#hello
+25 abddefg@upper_cse
+26 hello, world#upper_case
+27 hello,
+28 hello world@upper_case
+29 hello world#upper_case#hello
+30 abddefg@upper_cse
+31 hello, world#upper_case
+32 hello,
+33 hello world@upper_case
+34 hello world#upper_case#hello
+35 abddefg@upper_cse
+36 hello, world#upper_case
+37 hello,
+38 hello world@upper_case
+39 hello world#upper_case#hello
+40 abddefg@upper_cse
+41 hello, world#upper_case
+42 hello,
+43 hello world@upper_case
+44 hello world#upper_case#hello
+45 abddefg@upper_cse
+46 hello, world#upper_case
+47 hello,
+48 hello world@upper_case
+49 hello world#upper_case#hello
+50 abddefg#upper_cse
