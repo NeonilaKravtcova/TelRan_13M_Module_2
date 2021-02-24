@@ -14,8 +14,8 @@ public class CancelledTransactions {
         return accounts.stream().
                 filter(x -> x.balance > 0)
                 .flatMap(account -> /*Stream.of(account.transactions)*/account.transactions.stream())
-                .filter(transaction -> transaction.state.equals(State.CANCELLED))
-                .mapToLong(transaction -> transaction.sum)
+                .filter(transaction -> transaction.getState().equals(State.CANCELLED))
+                .mapToLong(transaction -> transaction.getSum())
                 .sum();
     }
 }
