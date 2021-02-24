@@ -15,5 +15,5 @@ public class Transaction {
         this.sum = sum;
         this.date = date;
     }
-
 }
+

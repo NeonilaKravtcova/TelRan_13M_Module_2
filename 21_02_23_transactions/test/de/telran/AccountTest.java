@@ -24,12 +24,12 @@ public class AccountTest {
 
     Account acc1 = new Account("01", 50, new ArrayList(Arrays.asList(tr01, tr02, tr03, tr04, tr05)));
     Account acc2 = new Account("02", 200, new ArrayList(Arrays.asList(tr06, tr07, tr09)));
-    Account acc3 = new Account("02", 200, new ArrayList(Arrays.asList(tr08, tr10)));
+    Account acc3 = new Account("03", -100, new ArrayList(Arrays.asList(tr08, tr10)));
 
     List<Account> accountList = new ArrayList(Arrays.asList(acc1, acc2, acc3));
 
     @Test
     public void cancelledTransactions_test(){
-        Assert.assertEquals(2000, new CancelledTransactions(accountList).sum());
+        Assert.assertEquals(1700, new CancelledTransactions(accountList).sum());
     }
 }
