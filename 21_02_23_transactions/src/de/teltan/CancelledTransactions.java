@@ -19,5 +19,5 @@ public class CancelledTransactions {
                 .mapToLong(transaction -> transaction.sum)
                 .sum();
     }
-
 }
+

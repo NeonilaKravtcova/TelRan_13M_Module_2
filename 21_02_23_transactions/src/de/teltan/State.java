@@ -5,3 +5,4 @@ public enum State {
     FINISHED,
     PROCESSING
 }
+

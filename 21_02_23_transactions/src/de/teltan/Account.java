@@ -15,13 +15,13 @@ public class Account {
         this.balance = balance;
         this.transactions = transactions;
     }
-
+/*
 
     public long cancelledTransactions() {
-        /*DoubleStream transactionStream = */return transactions.stream()
+        *//*DoubleStream transactionStream = *//*return transactions.stream()
                 .filter(transaction -> transaction.state.equals(State.CANCELLED))
                 .flatMapToLong(transaction -> LongStream.of(transaction.sum))
                 .sum();
         //return transactionStream.sum();
-    }
+    }*/
 }

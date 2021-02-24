@@ -16,21 +16,4 @@ public class Transaction {
         this.date = date;
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public long getSum() {
-        return sum;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-
 }
