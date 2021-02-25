@@ -1,5 +1,7 @@
 package de.telran;
 
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -8,7 +10,8 @@ public class Main {
         String text1 = "I love Java however some of these difficult exercises are really interesting";
         String text2 = "I love this Java however some of these bad exercises are really interesting";
 
-        Censor censor = new Censor();
+        Collection<String> words = new HashSet<>(Arrays.asList("badWord", "badWord2", "badWord3"));
+        Censor censor = new Censor(words);
 
         System.out.println(censor.verify(text0));
         System.out.println(censor.verify(text1));

@@ -10,10 +10,6 @@ public class CensorTest {
     String text = "i love this badWord1 Java however some of these badWord2 exercises are really badWord3";
     String text1 = "i love this Java however some of these difficult exercises are really interesting";
 
-    public CensorTest() {
-        censor = new Censor();
-    }
-
     @Test
     public void verify_test(){
         Assert.assertTrue(censor.verify(text));
