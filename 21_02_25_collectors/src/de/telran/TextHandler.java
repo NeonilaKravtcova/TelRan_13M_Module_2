@@ -19,4 +19,5 @@ public class TextHandler {
                 .stream()
                 .collect(Collectors.partitioningBy(predicate));
     }
+
 }

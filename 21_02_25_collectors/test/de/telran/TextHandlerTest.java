@@ -18,5 +18,4 @@ public class TextHandlerTest {
 
         Assert.assertEquals(res, textHandler.palindromFilter());
     }
-
 }
