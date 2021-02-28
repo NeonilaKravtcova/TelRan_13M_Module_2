@@ -12,4 +12,5 @@ public class TransactionService {
                 .collect(Collectors.groupingBy(transaction -> transaction.account,
                         Collectors.summingLong(account -> account.sum)));
     }
+
 }

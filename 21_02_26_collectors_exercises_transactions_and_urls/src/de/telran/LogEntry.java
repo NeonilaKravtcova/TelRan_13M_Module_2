@@ -32,4 +32,5 @@ public class LogEntry {
     public String toString() {
         return "login " + login + ", url = " + url + "\n";
     }
+
 }

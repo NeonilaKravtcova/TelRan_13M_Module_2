@@ -1,6 +1,5 @@
 package de.telran;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -15,20 +14,9 @@ public class LogEntryService {
     }
 
     public Map<String, Long> getUniqueEntriesByUrl(List<LogEntry> logEntries){
-
-/*        return logEntries
+        return new HashSet<>(logEntries)
                 .stream()
-                .collect(Collectors.collectingAndThen(Collectors.toCollection(HashSet::new), ArrayList::new))
-                .stream()
-                .collect(Collectors.groupingBy(entry -> entry.url, Collectors.counting()));*/
-
-
-        List<LogEntry> uniqueLogEntries =  logEntries
-                .stream()
-                .collect(Collectors.collectingAndThen(Collectors.toCollection(HashSet::new), ArrayList::new));
-
-        return clickCounter(uniqueLogEntries);
+                .collect(Collectors.groupingBy(entry -> entry.url, Collectors.counting()));
     }
-
 
 }

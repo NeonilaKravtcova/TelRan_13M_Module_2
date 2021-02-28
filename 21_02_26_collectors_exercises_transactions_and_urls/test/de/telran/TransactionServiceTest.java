@@ -34,4 +34,5 @@ public class TransactionServiceTest {
         res.put("Acc04", 50L);
         assertEquals(res, service.getTransactionsSums(transactions));
     }
+
 }

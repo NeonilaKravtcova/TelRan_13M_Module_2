@@ -51,4 +51,5 @@ public class LogEntryServiceTest {
         res.put("url_04", 1L);
         assertEquals(res, service.getUniqueEntriesByUrl(logEntries));
     }
+
 }
