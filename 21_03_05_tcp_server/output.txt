@@ -1,4 +1,7 @@
 Thread-0: I'M
 Thread-1: WRITING
-Thread-2: TO
-Thread-0: FILE
+Thread-2: MY
+Thread-3: TEXT
+Thread-0: INTO
+Thread-2: THIS
+Thread-3: FILE
