@@ -10,7 +10,7 @@ public class LoadSender implements Runnable {
 
     private final int udpServerPort;//порт LoadReceiver
     private final AtomicInteger tcpConnectionsCounter;
-    private int sendingFrequency;
+    private final int sendingFrequency;
 
     public LoadSender(int udpServerPort, AtomicInteger tcpConnectionsCounter, int sendingFrequency) {
         this.udpServerPort = udpServerPort;
@@ -24,18 +24,19 @@ public class LoadSender implements Runnable {
             InetAddress inetAddress = InetAddress.getByName(UDP_SERVER_HOST);
             DatagramSocket udpSocket = new DatagramSocket(udpServerPort);
 
-            String line = String.valueOf(tcpConnectionsCounter);
-
-            byte[] outputData = line.getBytes();
-
-            DatagramPacket packetOut = new DatagramPacket(// datagram to send
-                    outputData,
-                    outputData.length,
-                    inetAddress,
-                    udpServerPort);
-
             while (true) {
                 Thread.sleep(sendingFrequency);
+                //String line = String.valueOf(tcpConnectionsCounter);
+                String line = tcpConnectionsCounter.toString();
+
+                byte[] outputData = line.getBytes();
+
+                DatagramPacket packetOut = new DatagramPacket(// datagram to send
+                        outputData,
+                        outputData.length,
+                        inetAddress,
+                        udpServerPort);
+
                 udpSocket.send(packetOut);// sending the datagram with sendingFrequency
             }
 

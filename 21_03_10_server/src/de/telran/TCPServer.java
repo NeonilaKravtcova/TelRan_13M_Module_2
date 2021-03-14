@@ -7,17 +7,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TCPServer implements Runnable {
-
-    private final int udpServerPort;
+    
     private final int tcpPort;
     private final AtomicInteger tcpConnectionsCounter;
-    private int loadSenderSleepTime;
 
-    public TCPServer(int udpServerPort, int tcpPort, AtomicInteger tcpConnectionsCounter, int loadSenderSleepTime) {
-        this.udpServerPort = udpServerPort;
+    public TCPServer(int tcpPort, AtomicInteger tcpConnectionsCounter) {
         this.tcpPort = tcpPort;
         this.tcpConnectionsCounter = tcpConnectionsCounter;
-        this.loadSenderSleepTime =loadSenderSleepTime;
     }
 
     public void run() {
@@ -43,10 +39,9 @@ public class TCPServer implements Runnable {
                 executor.execute(task);//adding task to the queue
 
                 tcpConnectionsCounter.incrementAndGet();
-
-                new LoadSender(udpServerPort, tcpConnectionsCounter, loadSenderSleepTime).run();
-
+                
             }
+
         } catch (BindException e) {
             System.out.println("Port " + tcpPort + " is already in use. Please use another one");
         } catch (IOException e) {

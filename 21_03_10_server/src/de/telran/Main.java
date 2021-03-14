@@ -10,9 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        new LoadSender(UDP_SERVER_PORT, TCP_CONNECTIONS_COUNTER, SENDING_FREQUENCY).run();
+
         int tcpPort = Integer.parseInt(args[0]);
 
-        TCPServer tcpServer = new TCPServer(UDP_SERVER_PORT, tcpPort, TCP_CONNECTIONS_COUNTER, SENDING_FREQUENCY);
+        TCPServer tcpServer = new TCPServer(tcpPort, TCP_CONNECTIONS_COUNTER);
         tcpServer.run();
 
     }
