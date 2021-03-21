@@ -25,13 +25,13 @@ public class ShapeFlow implements ApplicationRunner {
 
     public void printPictures(List<Picture> pictures){
         for (Picture picture : pictures) {
-            System.out.println(picture);
+            picture.draw();
         }
     }
 
     public void printLines(List<Line> lines){
         for (Line line : lines) {
-            System.out.println(line);
+            line.draw();
         }
     }
 }
