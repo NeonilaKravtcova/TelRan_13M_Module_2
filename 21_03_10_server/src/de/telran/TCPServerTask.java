@@ -20,37 +20,29 @@ public class TCPServerTask implements Runnable {
     @Override
     public void run() {
 
-        PrintStream socketOutput;
-        BufferedReader socketInput;
-
         String line;
 
-        while (true) {
-            String threadName = Thread.currentThread().getName();
+        String threadName = Thread.currentThread().getName();
 
-            try {
-                socketOutput = new PrintStream(socket.getOutputStream());
-                socketInput = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                if ((line = socketInput.readLine()) != null) {
-                    String response = "Handled by server "
-                            + socket.getInetAddress().getHostName()
-                            + ", port "
-                            + socket.getPort()
-                            + ": "
-                            + line;
+        try (PrintStream socketOutput = new PrintStream(socket.getOutputStream());
+             BufferedReader socketInput = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
-                    socketOutput.println(response);
+            while ((line = socketInput.readLine()) != null) {
+                String response = "Handled by server "
+                        + socket.getInetAddress().getHostName()
+                        + ", port "
+                        + socket.getPort()
+                        + ": "
+                        + line;
 
-                    tcpConnectionsCounter.decrementAndGet();
+                socketOutput.println(response);
 
-                    System.out.println("Hello " + threadName);
-
-                }
-            } catch (IOException e) {
-                //e.printStackTrace();
-                System.out.println("Connection reset. " + threadName + " is closed");
-                break;
+                System.out.println("Hello " + threadName);
             }
+            tcpConnectionsCounter.decrementAndGet();
+        } catch (IOException e) {
+            //e.printStackTrace();
+            System.out.println("Connection reset. " + threadName + " is closed");
         }
     }
 }

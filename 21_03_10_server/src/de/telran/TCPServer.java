@@ -8,37 +8,33 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TCPServer implements Runnable {
     
-    private final int tcpPort;
-    private final AtomicInteger tcpConnectionsCounter;
+    int tcpPort;
+    AtomicInteger tcpConnectionsCounter;
 
     public TCPServer(int tcpPort, AtomicInteger tcpConnectionsCounter) {
         this.tcpPort = tcpPort;
         this.tcpConnectionsCounter = tcpConnectionsCounter;
     }
 
+    @Override
     public void run() {
-
+        ServerSocket serverSocket;
         try {
-            ServerSocket serverSocket = new ServerSocket(tcpPort);
-            ExecutorService executor = Executors.newFixedThreadPool(5);
+            serverSocket = new ServerSocket(tcpPort);
+            ExecutorService executor = Executors.newFixedThreadPool(10);
 
             while (true) {
-                System.out.println("TCP_PORT " + tcpPort + " is opened");
+                System.out.println("TCP Port " + tcpPort + " is opened");
 
-                Socket socket = null;
-                try {
-                    socket = serverSocket.accept();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Socket socket = serverSocket.accept();;
 
                 System.out.println("Connected");
+
+                tcpConnectionsCounter.incrementAndGet();
 
                 Runnable task = new TCPServerTask(socket, tcpConnectionsCounter);
 
                 executor.execute(task);//adding task to the queue
-
-                tcpConnectionsCounter.incrementAndGet();
                 
             }
 
@@ -48,5 +44,4 @@ public class TCPServer implements Runnable {
             e.printStackTrace();
         }
     }
-
 }
