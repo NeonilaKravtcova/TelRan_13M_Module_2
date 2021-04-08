@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .grid-init {
-    max-width: 1200px; /* максимальная ширина контейнера */
+    max-width: 800px; /* максимальная ширина контейнера */
     /*max-height: 600px;*/
     margin: auto; /* центрирование контейнера на странице */
     background-color: white; /* фон */
@@ -15,8 +15,8 @@
     color: #1976d2 ; /* цвет текста */
     border-radius: 5px; /* скругление углов */
     background-color: white; /* цвет фона */
-    /*border: 1px solid black; !* граница блока *!*/
-    border: none; /* граница блока */
+    border: 1px solid black; /* граница блока */
+    /*border: none; !* граница блока *!*/
     padding: 5px; /* внутренние отступы */
     /*  выравнивание текста по центру блока
     с помощью CSS Flexbox  */
@@ -28,7 +28,7 @@
 .grid {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 15% 70% 15%;
+    grid-template-columns: 20% 60% 20%;
     grid-template-rows: repeat(12, 1fr);
 }
 .l-header {

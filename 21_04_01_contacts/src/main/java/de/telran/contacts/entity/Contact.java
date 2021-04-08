@@ -5,47 +5,47 @@ public class Contact {
     private int id;
     private String name;
     private String lastName;
-    private int age;
+    private String phoneNumber;
 
-    public Contact(int id, String name, String lastName, int age) {
+    public Contact(int id, String name, String lastName, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.age = age;
+        this.phoneNumber = phoneNumber;
     }
 
     public Contact() {
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public int getAge() {
-        return age;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
