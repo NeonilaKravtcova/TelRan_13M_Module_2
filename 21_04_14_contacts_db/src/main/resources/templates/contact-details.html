@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Contact details</title>
+</head>
+<body>
+
+<div class="container" th:width="800">
+    <h4>Contact details</h4>
+    <div class="row">
+        <div class="col s12">
+            <div class="avatar btn-floating btn-large disabled">
+                <span th:text="${contact.name.charAt(0)}"></span>
+            </div>
+
+                <div>
+<!--                    <ul class="collection with-header" th:object="${contact}">
+                        <li>Name: <span th:text="*{getName()}"></span></li>
+                        <li>Last name: <span th:text="*{getLastName()}"></span></li>
+                        <li>Phone: <span th:text="*{phoneNumber}"></span></li>
+                    </ul>-->
+                    <table>
+                        <tr>
+                            <td>Name:</td>
+                            <td><span th:text="${contact.name}"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Last name:</td>
+                            <td><span th:text="${contact.lastName}"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td><span th:text="${contact.phoneNumber}"></span></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div>
+                        <a th:href="'/contacts/'" class="waves-effect waves-light btn-large blue darken-1"><b>BACK</b></a>
+                    </div>
+
+<!--                    <div th:with="firstPer=${contact.id}">
+
+                        <p>
+                            The name of the first person is <span th:text="${firstPer}">Julius Caesar</span>.
+                        </p>
+                    </div>-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

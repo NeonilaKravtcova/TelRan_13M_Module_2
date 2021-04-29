@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Contacts</title>
+</head>
+<body>
+
+<div class="container" th:width="800">
+
+    <h4>Phone book</h4>
+
+    <div class="row">
+        <div class="col s12">
+
+            <div class="grid-init grid">
+
+                <!--<div class="box-init box l-add"><a class="waves-effect waves-light btn-large blue darken-1">
+                    <b>ADD NEW CONTACT</b></a>
+                </div>-->
+
+                <div class="box-init box l-navi"></div>
+
+                <div class="logo btn-floating btn-large disabled">
+                    <i class="small material-icons waves-light blue-text">people</i>
+                </div>
+
+                <main class="box-init box l-main">
+                    <div class="col s12">
+                        <table class="collection-item" th:each="contact:${contacts}" th:cols="3">
+                            <tr>
+                                <td width="80%">
+                                    <a th:href="'/contacts/'+${contact.id}">
+                                        <span th:text="${contact.name+' '+contact.lastName}">
+                                        </span>
+                                    </a>
+                                </td>
+                                <td th:align="left" width="10%">
+                                    <a th:href="'/edit-contact/'+${contact.id}" class="secondary-content">
+                                        <i class="small material-icons waves-light blue-text">edit</i>
+                                    </a>
+                                </td>
+                                <td th:align="left" width="10%">
+                                    <a th:href="'/delete-contact/'+${contact.id}" class="secondary-content">
+                                        <i class="small material-icons waves-light red-text">delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+                </main>
+                <div class="box-init box l-add"><a th:href="'/add-contact/'" class="waves-effect waves-light btn-large blue darken-1"
+                                                   >
+                    <b>ADD NEW CONTACT</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

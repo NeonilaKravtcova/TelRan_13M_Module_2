@@ -1,0 +1,70 @@
+* {
+    /*  width и height элементов включают в
+    себя значения полей и границ  */
+    box-sizing: border-box;
+}
+.grid-init {
+    max-width: 800px; /* максимальная ширина контейнера */
+    /*max-height: 600px;*/
+    margin: auto; /* центрирование контейнера на странице */
+    background-color: white; /* фон */
+    padding: 30px; /* внутренние отступы */
+}
+.box-init {
+    font-size: larger; /* размер шрифта */
+    color: #1976d2 ; /* цвет текста */
+    border-radius: 5px; /* скругление углов */
+    background-color: white; /* цвет фона */
+    border: 1px solid black; /* граница блока */
+    /*border: none; !* граница блока *!*/
+    padding: 5px; /* внутренние отступы */
+    /*  выравнивание текста по центру блока
+    с помощью CSS Flexbox  */
+    display: flex;
+/*    align-items: center;
+    justify-content: center;*/
+}
+
+.grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: repeat(12, 1fr);
+}
+.l-header {
+    grid-area: my-header;
+}
+.l-add {
+    grid-area: my-add;
+}
+.l-navi {
+    grid-area: my-navi;
+}
+.l-main {
+    grid-area: my-main;
+}
+.l-aside {
+    grid-area: my-aside;
+}
+.l-footer {
+    grid-area: my-footer;
+}
+.grid {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-areas:
+        "my-navi my-add my-add"
+        "my-navi my-header my-header"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-navi my-main my-aside"
+        "my-footer my-footer my-footer";
+    grid-template-rows: repeat(auto-fit, minmax(20px, 1fr))
+    /*grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));*/
+}

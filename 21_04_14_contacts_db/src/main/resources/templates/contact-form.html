@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Add/edit contact</title>
+</head>
+<body>
+<div class="container" th:width="800">
+    <h4>Edit contact</h4>
+    <div class="row">
+        <div class="col s12">
+            <div class="logo btn-floating btn-large disabled">
+                <i class="large material-icons waves-light blue-text">person_add</i>
+            </div>
+        </div>
+    </div>
+    <div>
+        <form class="col s12" th:action="@{/save-contact}" th:object="${contact}" method="post">
+            <input type="hidden" id="id" name="id" th:value="${contact.id}">
+            <div>
+                <label for="name">
+                    <input type="text" id="name" name="name" placeholder="Name" th:field="*{name}">
+                </label>
+            </div>
+            <div>
+                <label for="lastname">
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" th:field="*{lastName}">
+                </label>
+            </div>
+            <div>
+                <label for="phonenumber">
+                    <input type="text" id="phonenumber" name="phonenumber" placeholder="Phone Number" th:field="*{phoneNumber}">
+                </label>
+            </div>
+            <br>
+            <input type="submit" class="waves-effect waves-light btn-large blue darken-1" value="SAVE">
+            <a th:href="'/contacts'" class="waves-effect waves-light btn-large blue darken-1">
+                <b>CANCEL</b>
+            </a>
+        </form>
+
+
+
+    </div>
+</div>
+</body>
+</html>
